@@ -1,4 +1,6 @@
-from flask import Flask , jsonify, render_template
+from flask import Flask , jsonify
+from flask_cors import CORS
+import os 
 import random
 countries = [
     "Bhutan", "Monaco", "Grenada", "Romania", "Malaysia", "Chile", "Marshall Islands", 
@@ -29,9 +31,7 @@ emog = [
     "🇱🇨", "🇹🇬", "🇸🇬", "🇲🇱", "🇱🇰", "🇺🇬", "🇱🇸", "🇳🇷", "🇸🇷", "🇮🇹", "🇨🇬", "🇳🇴", "🇱🇮"
 ]
 myshit=Flask(__name__)
-@myshit.route('/')
-def home():
-    return render_template('index.html')
+CORS(myshit)
 @myshit.route('/api/countries')
 def select():
     index=random.randint(0,len(countries)-1)
@@ -42,4 +42,5 @@ def select():
 def urdata():
     return jsonify({"countries": countries, "emojis": emog})
 if __name__ == '__main__':
-    myshit.run(debug=True)
+   port=int(os.environ.get("PORT",5000))
+   myshit.run(host='0.0.0.0', port=port)
