@@ -395,7 +395,7 @@ button {
         <script>
 
             function get_country() {
-                fetch("/api/countries")
+                fetch("https://country-api-h2xe.onrender.com/api/countries")
                     .then(res => res.json())
                     .then(con => {
                         document.getElementById('dis').innerHTML = `UR COUNTRY NAME :<span style="color:#68C784;"> ${con.countries}<sup>${con.short}</sup></span>`;
