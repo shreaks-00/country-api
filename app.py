@@ -32,6 +32,9 @@ emog = [
 ]
 myshit=Flask(__name__)
 CORS(myshit)
+@myshit.route('/')
+def home():
+    return "API is active! Visit /api/countries for data."
 @myshit.route('/api/countries')
 def select():
     index=random.randint(0,len(countries)-1)
